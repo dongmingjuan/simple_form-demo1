@@ -8,9 +8,16 @@
     <br>
     <br>
     <%= f.association :colors,  as: :check_boxes %>
+    <br>
+    <%= f.input :released_on, label: "Release Date"%>
+    <br>
+    <%= f.input :discontinued %>
+    <br>
+    <td><%= f.input :rating, collection: 1..5, as: :radio_buttons%></td>
   </div>
 
   <div class="form-actions">
+    
     <%= f.button :submit %>
   </div>
 <% end %>
