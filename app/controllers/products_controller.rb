@@ -26,8 +26,13 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
+
     respond_to do |format|
       if @product.save
+        params[:product][:color_ids].reject{|c| c.empty?}.each do |id|
+          color_name = Color.find(id).name
+          @product.colors.create(:name => color_name)
+        end
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
@@ -69,6 +74,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :category_id)
+      params.require(:product).permit(:title, :category_id, :color_ids)
     end
 end

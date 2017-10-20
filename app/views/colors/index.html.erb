@@ -1,0 +1,19 @@
+<%= link_to("new color", new_color_path) %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>product</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @colors.each do |color| %>
+       <tr>
+         <td><%= color.name %></td>
+       </tr>
+     <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to("首页", categories_path )%>
